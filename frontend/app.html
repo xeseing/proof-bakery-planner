@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proof — today's bake</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* Three type sizes, nothing between them: one hero figure per panel, body, muted.
+     Whole screen at 1024x768, nothing scrolls, nothing moves unasked. */
+  :root { --hero: 40px; --text: 15px; --small: 14px; }  /* sizes only: --body is the font stack */
+
+  body { padding: 10px 18px; font-size: var(--text); }
+
+  header { display: flex; align-items: baseline; gap: 22px; padding: 0 2px 6px; }
+  .wordmark { font-family: var(--display); font-size: var(--text); font-weight: 700;
+              letter-spacing: .04em; text-transform: uppercase; }
+  .today { font-size: var(--text); }
+  header .protected { margin-left: auto; text-align: right; line-height: 1.35; }
+  header .protected .num { font-size: var(--text); font-weight: 700; }
+  header .note { display: block; font-size: var(--small); color: var(--flour-mute); }
+
+  /* the baker tells Proof something; Proof proposes and waits to be approved */
+  #tellbar { position: relative; flex: 1; max-width: 330px; }
+  #tell { width: 100%; font: 15px var(--body); color: var(--flour); background: var(--ink);
+          border: 1px solid var(--line); border-radius: 7px; padding: 4px 10px; }
+  #tell::placeholder { color: var(--flour-mute); }
+  /* pinned top-right, clear of the bake list: the row it changes has to stay in view */
+  #card { position: fixed; top: 56px; right: 16px; width: 400px; z-index: 5;
+          background: var(--ink-raised); border: 1px solid var(--ember-dim);
+          border-radius: 10px; padding: 11px 13px; box-shadow: 0 10px 30px #00000080; }
+  .cardtop { display: flex; align-items: baseline; gap: 10px; }
+  #card strong { font-size: 16px; }
+  #card p { margin: 3px 0 8px; font-size: 14px; }
+  .cardfoot { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+  .cardfoot .approve { border-color: var(--ember); color: var(--ember); }
+  .badge { margin-left: auto; font-size: 14px; color: var(--loss);
+           border: 1px solid var(--loss); border-radius: 5px; padding: 0 6px; white-space: nowrap; }
+
+  /* a product with no history: borrow a curve, then the usual newsvendor */
+  #addnew { margin-left: auto; font-size: 14px; line-height: 1.3; padding: 1px 8px;
+            color: var(--flour-mute); font-weight: 400; }
+  #newitem { position: fixed; top: 56px; right: 16px; width: 430px; z-index: 6;
+             background: var(--ink-raised); border: 1px solid var(--ember-dim);
+             border-radius: 10px; padding: 11px 13px; box-shadow: 0 10px 30px #00000080; }
+  #newitem .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; margin: 8px 0 0; }
+  #newitem label { display: flex; align-items: baseline; gap: 6px; font-size: 14px;
+                   color: var(--flour-mute); min-width: 0; }   /* grid cells must shrink */
+  #newitem input, #newitem select { flex: 1; min-width: 0; font: 15px var(--body);
+    color: var(--flour); background: var(--ink); border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px; }
+  #ni-result { margin: 9px 0 8px; font-size: 15px; }
+  #ni-result .big { font-family: var(--display); font-size: 21px; font-weight: 700; color: var(--ember); }
+
+  main { display: grid; grid-template-columns: 1.14fr 1fr; gap: 11px; align-items: start; }
+  main > .panel { min-width: 0; }   /* hold the ratio: nowrap text must not widen a column */
+
+  .panel { background: var(--ink-raised); border: 1px solid var(--line);
+           border-radius: 12px; padding: 11px 14px 10px; }
+  .panel.lit { border-color: var(--ember); }
+  .panel h2 { font-size: var(--small); font-weight: 500; color: var(--flour-mute);
+              letter-spacing: .06em; text-transform: uppercase;
+              display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  kbd { font: 500 var(--small)/1 var(--body); color: var(--flour-mute);
+        border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px;
+        letter-spacing: 0; }
+
+  /* ---- bake list: pastry is the hero, bread folds away to one line ---- */
+  .blockhead { display: flex; align-items: baseline; gap: 10px; padding: 0 0 2px; }
+  .blockhead h3 { font-size: var(--text); font-weight: 600; }
+  .blockhead .rule { flex: 1; height: 1px; background: var(--line); }
+  .blockhead .hint { font-size: var(--small); min-width: 0;
+                     overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .blockhint { margin: 2px 0 6px; font-size: var(--small); }
+  .block + .block { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .disclose { font-size: var(--small); color: var(--flour-mute); border: 0; padding: 1px 6px; }
+  .disclose:hover { color: var(--flour); background: #1C2533; }
+  .rows { overflow: hidden; }
+  .bread .rows { max-height: 0; transition: max-height .18s ease; }
+  .bread.open .rows { max-height: 420px; }
+
+  .row { display: grid; grid-template-columns: 1fr auto auto; column-gap: 12px; padding: 0 0 1px; }
+  .row + .row { border-top: 1px solid var(--line); padding-top: 4px; }
+  .head { grid-column: 1; grid-row: 1; display: flex; align-items: baseline; gap: 10px;
+          min-width: 0; align-self: center; }
+  .item { font-weight: 600; line-height: 1.25; white-space: nowrap; font-size: var(--text); }
+  .sub { grid-column: 1 / -1; grid-row: 2; display: flex; align-items: center;
+         gap: 10px; min-width: 0; min-height: 8px; }
+  .why { font-size: var(--small); line-height: 1.45; color: var(--flour-mute); min-width: 0;
+         white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .qty { grid-column: 2; grid-row: 1; display: flex; align-items: baseline; gap: 10px; }
+  .qty .num { line-height: 1; font-weight: 700; text-align: right; }
+  .mark { white-space: nowrap; text-align: left; font-size: var(--small);
+          color: var(--flour-mute); width: 210px; }
+
+  .pastry .row { padding: 8px 0 4px; }
+  .pastry .qty .num { font-size: var(--hero); min-width: 78px; color: var(--ember); }
+  .bread .qty .num { font-size: var(--text); min-width: 78px; }
+
+  .controls { grid-column: 3; grid-row: 1; display: flex; gap: 2px; align-items: center; }
+  .controls button { border: 0; padding: 2px 6px; font-size: 15px; line-height: 1.2;
+                     color: var(--flour-mute); border-radius: 5px; }
+  .controls button:hover { color: var(--flour); background: #1C2533; }
+  .row.accepted .accept { color: var(--gain); }
+  .row.changed .qty .num { color: var(--ember); }
+
+  .band { position: relative; width: 96px; flex: none; height: 3px;
+          background: var(--line); border-radius: 2px; }
+  .band .span { position: absolute; height: 3px; border-radius: 2px;
+                background: rgba(242, 237, 228, .22); }
+  .band .median { position: absolute; top: -3px; width: 1px; height: 9px; background: var(--flour-mute); }
+  .band .bake { position: absolute; top: -4px; width: 3px; height: 11px;
+                background: var(--flour); border-radius: 2px; }
+  .pastry .band .bake { background: var(--ember); }
+
+  .override-box { grid-column: 1 / -1; grid-row: 3; display: none; gap: 8px;
+                  align-items: center; padding: 4px 0 2px; }
+  .row.open .override-box { display: flex; }
+  .override-box input { width: 80px; font: inherit; padding: 2px 8px; color: var(--flour);
+                        background: var(--ink); border: 1px solid var(--line); border-radius: 6px; }
+
+  /* ---- proof report ---- */
+  .window { margin: -3px 0 5px; font-size: var(--small); }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: right; font-size: var(--small); font-weight: 500; color: var(--flour-mute);
+       padding: 1px 0; }
+  th:first-child, td:first-child { text-align: left; }
+  td { padding: 4px 0; border-top: 1px solid var(--line); text-align: right;
+       font-variant-numeric: tabular-nums; }
+  th, td { white-space: nowrap; }
+  th + th, td + td { padding-left: 12px; }   /* longer words, same columns */
+  tr.proof td { font-weight: 700; }
+  .delta { margin: 7px 0 0; display: flex; align-items: baseline; gap: 9px; }
+  .delta .num { font-size: var(--hero); font-weight: 700; color: var(--gain); }
+  .against { margin: 2px 0 0; font-size: var(--small); line-height: 1.32; }
+  .sweep { font-size: var(--small); line-height: 1.32; margin: 7px 0 0; }
+  .stress { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .stress h3 { font-size: var(--small); font-weight: 500; color: var(--flour-mute);
+               letter-spacing: .06em; text-transform: uppercase; }
+  .stress .line { margin: 6px 0 0; }
+  .stress .amount { font-family: var(--display); font-weight: 700; color: var(--flour);
+                    font-variant-numeric: tabular-nums; }
+  .stress p { margin: 4px 0 0; font-size: var(--small); line-height: 1.32; }
+
+  /* ---- markdown clock ---- */
+  .clockwrap { display: grid; grid-template-columns: 1fr 250px; gap: 22px; align-items: center; }
+  #clock { display: grid; gap: 2px; }
+  .clockrow { display: grid; grid-template-columns: 148px 1fr; gap: 12px; align-items: end; }
+  .name { font-weight: 600; }
+  .bars { display: flex; gap: 3px; height: 15px; align-items: flex-end; }
+  .bars div { flex: 1; border-radius: 2px 2px 0 0; min-height: 2px;
+              background: var(--ember-dim); }
+  .bars div.cut { background: var(--ember); }
+  .axis { display: flex; gap: 3px; font-size: var(--small); color: var(--flour-mute);
+          line-height: 1.2; }
+  .axis span { flex: 1; text-align: center; font-variant-numeric: tabular-nums; }
+  .axis.cuts span { color: var(--ember); }
+  .recovered { text-align: right; line-height: 1.35; }
+  .recovered .num { display: block; font-size: var(--hero); font-weight: 700; color: var(--gain); }
+  .recovered .note { font-size: var(--small); }
+  .clocknote { font-size: var(--small); line-height: 1.4; margin: 4px 0 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="wordmark">Proof</span>
+  <span class="today" id="today"></span>
+
+  <form id="tellbar" autocomplete="off">
+    <input id="tell" type="text" placeholder="Tell Proof about tomorrow…"
+           aria-label="Tell Proof about tomorrow">
+  </form>
+  <span class="protected">
+    <span class="num" id="protected">₹0</span> saved a day
+    <span class="note muted">more than baking the usual amount, over the last 30 days</span>
+  </span>
+</header>
+
+<!-- Outside the form on purpose: a button inside one submits it, which reopened this
+     card the moment Reject closed it. It is a fixed overlay and needs no parent. -->
+<div id="card" hidden role="dialog" aria-label="Proposed adjustment">
+  <div class="cardtop">
+    <strong id="ask"></strong>
+    <span id="degraded" class="badge" hidden
+          title="degraded: override_parse">couldn't read that — showing an example</span>
+  </div>
+  <p id="why" class="muted"></p>
+  <div class="cardfoot">
+    <button type="button" class="approve">Approve</button>
+    <button type="button" class="reject">Reject</button>
+    <span id="prov" class="muted"></span>
+  </div>
+</div>
+
+<div id="newitem" hidden role="dialog" aria-label="New item with no history">
+  <strong>New item, nothing sold yet</strong>
+  <div class="fields">
+    <label>Name <input id="ni-name" value="Swiss cake" aria-label="Name"></label>
+    <label>Kind <select id="ni-kind" aria-label="Pastry or bread">
+      <option value="pastry">pastry</option><option value="bread">bread</option></select></label>
+    <label>Price ₹<input id="ni-price" type="number" value="120" aria-label="Price"></label>
+    <label>Costs you ₹<input id="ni-cost" type="number" value="40" aria-label="What it costs you"></label>
+    <label>Worth unsold ₹<input id="ni-salvage" type="number" value="30" aria-label="Worth if unsold"></label>
+    <label>Sells about <input id="ni-volume" type="number" value="12" aria-label="Sells about how many a day"> a day</label>
+  </div>
+  <p id="ni-result" class="muted"></p>
+  <div class="cardfoot">
+    <button type="button" id="ni-go">Work it out</button>
+    <button type="button" id="ni-approve" hidden>Approve</button>
+    <button type="button" id="ni-cancel">Cancel</button>
+  </div>
+</div>
+
+<main>
+  <section class="panel" id="p1" tabindex="-1" aria-label="Bake list">
+    <h2>Bake list <kbd>1</kbd>
+      <button type="button" id="addnew">+ new item</button></h2>
+    <div id="bakelist"></div>
+  </section>
+
+  <section class="panel" id="p2" tabindex="-1" aria-label="Proof report">
+    <h2>Proof report <kbd>2</kbd></h2>
+    <p class="window muted" id="window"></p>
+    <table>
+      <thead><tr><th>How you bake</th><th>Profit</th><th>Thrown away</th><th>Sold out</th></tr></thead>
+      <tbody id="policies"></tbody>
+    </table>
+    <div class="delta"><span class="num" id="delta">₹0</span><span>a month</span></div>
+    <p class="against muted">more than you would make baking the usual amount, the way most bakeries do</p>
+    <p class="sweep muted" id="sweep"></p>
+    <div class="stress">
+      <h3>When the season turns</h3>
+      <p class="line" id="stressline"></p>
+      <p class="muted">August's tourist rush fades. Baking the last four weeks' average keeps
+        you baking for it; Proof follows the drop, so the gap widens.</p>
+    </div>
+  </section>
+</main>
+
+<section class="panel" id="p3" tabindex="-1" aria-label="Markdown clock" style="margin-top:12px">
+  <h2>Markdown clock <kbd>3</kbd></h2>
+  <div class="clockwrap">
+    <div id="clock"></div>
+    <div class="recovered">
+      <span class="num" id="recovered">₹0</span>
+      <span class="note muted">recovered at closing, instead of dumped</span>
+    </div>
+  </div>
+  <p class="clocknote" id="clocknote"></p>
+</section>
+
+<!-- plan-data.js is output/plan.json, written by src/core/06_plan.py as a script so the
+     page works straight from file:// with no server. -->
+<script src="plan-data.js"></script>
+<script src="overrides.js"></script>
+<script>
+const P = window.PLAN;
+const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const rupees = n => "₹" + Math.round(n).toLocaleString("en-IN");
+const titled = s => s.toLowerCase().replace(/\b[a-z]/g, c => c.toUpperCase());
+const signed = n => (n < 0 ? "−" : "+") + rupees(Math.abs(n));
+const onDay = (iso, opts) => new Date(iso + "T00:00:00").toLocaleDateString("en-GB", opts);
+const span = r => onDay(r.start, { day: "numeric", month: "short" }) + " – "
+                + onDay(r.end, { day: "numeric", month: "short", year: "numeric" });
+
+// The only figure that moves, and only when the baker approves a change to it.
+function countTo(el, from, to) {
+  if (still) return void (el.textContent = to);
+  const t0 = performance.now();
+  (function frame(t) {
+    const k = Math.min(1, (t - t0) / 200);
+    el.textContent = Math.round(from + (to - from) * k);
+    if (k < 1) requestAnimationFrame(frame);
+  })(t0);
+}
+
+// ---- header
+document.getElementById("today").textContent =
+  onDay(P.date, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+document.getElementById("protected").textContent = rupees(P.protected_rupees);
+
+// ---- bake list, split into the two things the economics actually say to do
+const weekday = onDay(P.date, { weekday: "long" });
+
+// A reason only where it is not obvious from the block heading: a sellout streak,
+// or a weekday that is genuinely out of character. Most rows say nothing.
+function noteFor(b) {
+  if (b.reason) return b.reason;                       // Phase 7 writes a sentence here
+  const value = f => (b.drivers.find(d => d.factor === f) || {}).value;
+  const soldOut = value("stockouts"), lift = value("weekday");
+  if (soldOut >= 2) return `Sold out ${soldOut} of the last 4`;
+  if (Math.abs(lift) >= 0.3)
+    return `${weekday}s sell ${Math.round(Math.abs(lift) * 100)}% ${lift > 0 ? "more" : "less"} than other days`;
+  return "";
+}
+
+// One painter for quantity, marker and band, so an override can never leave a
+// marker describing the number it used to be.
+function paint(row, b, quantity, animate) {
+  const gap = quantity - b.median;
+  const num = row.querySelector(".qty .num");
+  if (animate) countTo(num, +num.textContent || quantity, quantity);
+  else num.textContent = quantity;
+  row.querySelector(".mark").textContent = gap === 0 ? "— same as usual"
+    : gap > 0 ? `▲ ${gap} more than a usual ${weekday}`
+              : `▼ ${-gap} less than usual`;
+  const lo = Math.min(b.low, quantity), hi = Math.max(b.high, quantity);
+  const pad = (hi - lo) * 0.08 || 1, a = lo - pad, z = hi + pad;
+  const at = v => ((v - a) / (z - a)) * 100 + "%";
+  row.querySelector(".span").style.left = at(b.low);
+  row.querySelector(".span").style.width = (parseFloat(at(b.high)) - parseFloat(at(b.low))) + "%";
+  row.querySelector(".median").style.left = at(b.median);
+  row.querySelector(".bake").style.left = at(quantity);
+}
+
+const blocks = [
+  { kind: "pastry", title: "Pastry — bake more than usual" },
+  { kind: "bread", title: "Bread — bake the usual amount" },
+];
+document.getElementById("bakelist").innerHTML = blocks.map(({ kind, title }) => {
+  const items = P.bake_list.filter(b => b.kind === kind);
+  const tau = items.reduce((t, b) => t + b.tau, 0) / items.length;
+  const ratio = tau / (1 - tau);                       // Cu over Co, straight from tau
+  const hint = ratio >= 1.5 ? `running out costs ${Math.round(ratio)}× a leftover`
+                            : "both mistakes cost about the same";
+  // Seven rows of "same as usual" is not worth half a panel: bread folds to one line
+  // that says how far from usual the furthest of them sits.
+  const spread = Math.max(...items.map(b => Math.abs(b.quantity - b.median)));
+  const summary = kind === "bread"
+    ? ` · ${items.length} items, ${spread ? `all within ${spread} of usual` : "all the same as usual"}`
+    : "";
+  const toggle = kind === "bread"
+    ? `<button type="button" class="disclose" aria-expanded="false"
+               aria-controls="breadrows">show</button>` : "";
+  const folded = kind === "bread";
+  return `<div class="block ${kind}">
+    <div class="blockhead"><h3>${title}${summary}</h3><span class="rule"></span>
+      ${folded ? "" : `<span class="hint muted">${hint}</span>`}${toggle}</div>
+    <div class="rows"${folded ? ' id="breadrows"' : ""}>
+      ${folded ? `<p class="blockhint muted">${hint}</p>` : ""}${items.map(rowMarkup).join("")}</div>
+  </div>`;
+}).join("");
+
+const bread = document.querySelector(".block.bread");
+bread.querySelector(".disclose").onclick = e => {
+  const open = bread.classList.toggle("open");
+  e.currentTarget.textContent = open ? "hide" : "show";
+  e.currentTarget.setAttribute("aria-expanded", String(open));
+};
+
+function rowMarkup(b) {
+  return `<div class="row" data-item="${b.item}">
+      <span class="head"><span class="item">${titled(b.item)}</span></span>
+      <span class="qty"><span class="num"></span><span class="mark"></span></span>
+      <span class="controls">
+        <button class="accept" title="Accept" aria-label="Accept ${titled(b.item)}"
+                aria-pressed="false">✓</button>
+        <button class="over" title="Override" aria-label="Override ${titled(b.item)}">✎</button>
+      </span>
+      <span class="sub">
+        <span class="band" title="most ${weekday}s sell ${b.low} to ${b.high}">
+          <span class="span"></span><span class="median"></span><span class="bake"></span></span>
+        <span class="why">${noteFor(b)}</span>
+      </span>
+      <span class="override-box">
+        <label>Bake instead <input type="number" min="0" value="${b.quantity}"></label>
+        <button class="apply">Apply</button><span class="muted note"></span>
+      </span>
+    </div>`;
+}
+
+document.querySelectorAll(".row").forEach(wire);
+
+function wire(row) {
+  const b = P.bake_list.find(x => x.item === row.dataset.item);
+  paint(row, b, b.quantity);
+  row.querySelector(".accept").onclick = e => {
+    row.classList.add("accepted");
+    e.currentTarget.setAttribute("aria-pressed", "true");
+    e.currentTarget.title = "Accepted";
+  };
+  row.querySelector(".over").onclick = () => row.classList.toggle("open");
+  row.querySelector(".apply").onclick = () => {
+    const to = Math.max(0, Math.round(+row.querySelector("input").value || 0));
+    paint(row, b, to, true);
+    row.classList.toggle("changed", to !== b.quantity);
+    row.querySelector(".override-box .note").textContent =
+      to === b.quantity ? "" : `was ${b.quantity}, you changed it`;
+    row.classList.remove("open");
+  };
+}
+
+// ---- an item with no history borrows the nearest one's curve.
+// Mirrors src/core/cold_start.py, which holds the canonical version and its self-check.
+const TAUS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+const atTau = (qs, tau) => {
+  const x = Math.min(0.9, Math.max(0.1, tau));
+  const i = Math.min(TAUS.length - 2, Math.floor((x - 0.1) / 0.1));
+  return qs[i] + ((x - TAUS[i]) / 0.1) * (qs[i + 1] - qs[i]);
+};
+
+function coldStart({ name, kind, price, cost, salvage, volume }) {
+  const pool = P.bake_list.filter(b => b.kind === kind);
+  const match = pool.reduce((a, b) => Math.abs(b.price - price) < Math.abs(a.price - price) ? b : a);
+  const scale = volume / match.quantiles[4];              // index 4 is the middle, tau 0.5
+  const quantiles = match.quantiles.map(q => q * scale);
+  const cu = price - cost, co = Math.max(cost - salvage, 0.5);
+  const tau = cu / (cu + co);
+  const read = t => Math.round(atTau(quantiles, t));
+  return { item: name, kind, price, quantiles, tau: +tau.toFixed(3), drivers: [],
+           quantity: read(tau), median: read(0.5), low: read(0.2), high: read(0.8),
+           matched: match.item, why: `same category, closest price (₹${match.price} against ₹${price})`,
+           reason: `new — modelled on ${titled(match.item)}` };
+}
+
+const ni = part => document.getElementById("ni-" + part);
+const newcard = document.getElementById("newitem");
+let newItem = null;
+
+function newItemInput() {
+  const read = part => +ni(part).value;
+  const name = ni("name").value.trim();
+  const fields = { name, kind: ni("kind").value, price: read("price"), cost: read("cost"),
+                   salvage: read("salvage"), volume: read("volume") };
+  if (!name) return "Give it a name.";
+  if (P.bake_list.some(b => b.item.toLowerCase() === name.toLowerCase()))
+    return "That one is already on the list.";
+  if (!(fields.price > fields.cost)) return "Price has to be more than what it costs you.";
+  if (!(fields.volume > 0)) return "How many a day? That has to be more than zero.";
+  return fields;
+}
+
+document.getElementById("addnew").onclick = () => {
+  closeCard();
+  ni("result").textContent = "";
+  ni("approve").hidden = true;
+  newcard.hidden = false;
+  ni("name").focus();
+};
+ni("cancel").onclick = () => { newcard.hidden = true; newItem = null; };
+ni("go").onclick = () => {
+  const fields = newItemInput();
+  if (typeof fields === "string") {
+    ni("result").textContent = fields;
+    ni("approve").hidden = true;
+    return;
+  }
+  newItem = coldStart(fields);
+  const gap = newItem.quantity - newItem.median;
+  ni("result").innerHTML = `Modelled on ${titled(newItem.matched)} — ${newItem.why}.<br>
+    Bake <span class="big">${newItem.quantity}</span> tomorrow,
+    ${gap === 0 ? "the same as its usual day" :
+      `${Math.abs(gap)} ${gap > 0 ? "more" : "less"} than a usual ${weekday}`}.`;
+  ni("approve").hidden = false;
+};
+ni("approve").onclick = () => {
+  P.bake_list.push(newItem);
+  const block = document.querySelector(`.block.${newItem.kind}`);
+  block.insertAdjacentHTML("beforeend", rowMarkup(newItem));
+  const row = block.lastElementChild;
+  wire(row);
+  newcard.hidden = true;
+  newItem = null;
+};
+
+// ---- proof report: spring leads, September stays as the stress case
+const h = P.backtest.headline, s = P.backtest.stress;
+const label = { yesterday: "Bake like yesterday", proof: "Proof",
+                weekday_avg: `Your usual ${weekday}` };
+document.getElementById("window").textContent =
+  `${span(h)} · ${h.trading_days} days the shop was open · ${h.note}`;
+document.getElementById("policies").innerHTML = ["yesterday", "weekday_avg", "proof"].map(p =>
+  `<tr class="${p === "proof" ? "proof" : ""}"><td>${label[p]}</td><td>${rupees(h.profit[p])}</td>
+   <td>${h.waste_pct[p].toFixed(1)}%</td><td>${h.stockout_item_days[p]} days</td></tr>`).join("");
+document.getElementById("delta").textContent = signed(h.per_month);
+document.getElementById("sweep").textContent = "Still ahead whether ingredients cost "
+  + Object.keys(h.sensitivity).join(", ") + " of the price: "
+  + Object.values(h.sensitivity).map(signed).join(" · ");
+document.getElementById("stressline").innerHTML =
+  `${span(s)} — the usual amount made <span class="amount">${rupees(s.profit.weekday_avg)}</span>,
+   Proof <span class="amount">${rupees(s.profit.proof)}</span>,
+   a gap of <span class="amount">${signed(s.delta)}</span>`;
+
+// ---- markdown clock: the shelf hour by hour, with the cuts marked
+const hours = [...new Set(P.markdown_schedule.map(r => r.hour))].sort((x, y) => x - y);
+const byItem = new Map();
+P.markdown_schedule.forEach(r => byItem.set(r.item, [...(byItem.get(r.item) || []), r]));
+const marked = [...byItem].filter(([, rows]) => rows.some(r => r.discount_pct));
+
+// The cuts are the same schedule for every marked item, so the hours carry them once.
+const cuts = new Map(marked.flatMap(([, rows]) =>
+  rows.filter(r => r.discount_pct).map(r => [r.hour, r.discount_pct])));
+const column = label => hours.map(hr => `<span>${label(hr)}</span>`).join("");
+
+document.getElementById("clock").innerHTML = marked.map(([item, rows]) => {
+  const bake = P.bake_list.find(b => b.item === item).quantity;
+  const bars = hours.map(hr => {
+    const r = rows.find(x => x.hour === hr);
+    return `<div class="${r.discount_pct ? "cut" : ""}"
+      style="height:${Math.max(2, 100 * r.remaining / bake)}%"
+      title="${hr}:00 — ${r.remaining} left, ${r.expected_remaining_demand} still wanted"></div>`;
+  }).join("");
+  return `<div class="clockrow"><span class="name">${titled(item)}</span>
+    <div class="bars">${bars}</div></div>`;
+}).join("")
++ `<div class="clockrow"><span></span><div class="axis">${column(hr => hr % 2 ? "" : hr)}</div></div>`
++ `<div class="clockrow"><span></span><div class="axis cuts">
+     ${column(hr => cuts.has(hr) ? "−" + cuts.get(hr) + "%" : "")}</div></div>`;
+
+document.getElementById("recovered").textContent = rupees(P.recovered_rupees);
+document.getElementById("clocknote").innerHTML =
+  `Less of what gets dumped, more of what gets discounted.
+   <span class="muted">The other ${P.bake_list.length - marked.length} items should sell out
+   without a discount.</span>`;
+
+// ---- the override: a message in, a proposal back, nothing applied without a click.
+// The parse is cached to disk by src/agents/override.py and shipped as overrides.js,
+// because a page on file:// has nothing to call and the hall wifi is not invited.
+const OV = window.OVERRIDES;
+const norm = s => s.toLowerCase().replace(/[^\w\s]/g, " ").split(/\s+/).filter(Boolean).join(" ");
+const card = document.getElementById("card");
+let proposal = null;
+
+function closeCard() { card.hidden = true; proposal = null; }
+
+// Match on what carries the meaning — the number and the item — not the exact
+// sentence. A typo in "ka" is not a failed parse. The number must agree exactly:
+// a quantity is the one thing never guessed at.
+const shape = text => {
+  const words = norm(text).split(" ").filter(Boolean);
+  return { num: words.find(w => /^\d+$/.test(w)) || "",
+           words: new Set(words.filter(w => !/^\d+$/.test(w))) };
+};
+
+// Names a baker uses for something we do not stock under that name.
+const ALIAS = { puff: "CROISSANT" };
+const MOST = 500;   // more than a day's baking of anything on this menu
+
+function findItem(said) {
+  const names = P.bake_list.map(b => b.item).sort((a, b) => b.length - a.length);  // longest first,
+  const named = names.find(n => said.includes(n.toLowerCase()));  // so "cereal baguette" beats "baguette"
+  if (named) return named;
+  const alias = Object.keys(ALIAS).find(word => said.includes(word));
+  return alias ? ALIAS[alias] : "";
+}
+
+// A quantity is arithmetic, not interpretation: read the number and the item straight
+// out of the message. The cache is for messages that need reading, like a wedding with
+// no number in it.
+function interpret(said) {
+  const number = (said.match(/\d+/) || [])[0];
+  const item = findItem(said);
+  if (number && item) {
+    const units = +number;
+    if (units < 1 || units > MOST)
+      return { refuse: `${units} is outside what I will propose`, why: `Anything from 1 to ${MOST}.` };
+    return { parse: { item, delta_units: units, source: "message",
+                      reason: `Order for ${units} ${titled(item).toLowerCase()} tomorrow` } };
+  }
+  if (!number) {
+    const cached = lookup(said);
+    if (cached) return { parse: cached };
+  }
+  return { unreadable: true };
+}
+
+function lookup(text) {
+  const said = shape(text);
+  let best = null, score = 0;
+  for (const [phrase, parse] of Object.entries(OV.phrases)) {
+    const cached = shape(phrase);
+    if (said.num !== cached.num) continue;
+    const named = parse.item && said.words.has(parse.item.toLowerCase());  // "20 croissant" is enough
+    const overlap = [...cached.words].filter(w => said.words.has(w)).length / cached.words.size;
+    const how_close = named ? 1 : overlap;
+    if (how_close > score) { score = how_close; best = parse; }
+  }
+  return score >= 0.6 ? best : null;
+}
+
+document.getElementById("tellbar").onsubmit = e => {
+  e.preventDefault();
+  const said = norm(document.getElementById("tell").value);
+  if (!said) return;
+  const read = interpret(said);
+  proposal = read.parse || null;
+  const row = proposal && document.querySelector(`.row[data-item="${CSS.escape(proposal.item)}"]`);
+  const actionable = !!(proposal && proposal.delta_units !== 0 && row);
+
+  document.getElementById("ask").textContent =
+    read.unreadable ? "No item or quantity found in that message"
+    : read.refuse ? read.refuse
+    : actionable ? `Add ${proposal.delta_units} ${titled(proposal.item).toLowerCase()} tomorrow?`
+    : "Nothing to change from that";
+  document.getElementById("why").textContent =
+    read.unreadable ? 'Try something like "kal 20 croissant ka order hai".'
+    : read.refuse ? read.why : proposal.reason;
+  document.getElementById("prov").textContent = !proposal ? ""
+    : proposal.source === "message" ? "read straight from your message"
+    : `${Math.round(proposal.confidence * 100)}% sure · from saved answers `
+      + (proposal.source === "seeded" ? "(example)" : `(${proposal.source})`);
+  document.getElementById("degraded").hidden = !read.unreadable;
+  card.querySelector(".approve").hidden = !actionable;
+  card.querySelector(".reject").textContent = actionable ? "Reject" : "Dismiss";
+  card.hidden = false;
+};
+
+card.querySelector(".reject").onclick = closeCard;
+card.querySelector(".approve").onclick = () => {
+  const b = P.bake_list.find(x => x.item === proposal.item);
+  const row = document.querySelector(`.row[data-item="${CSS.escape(proposal.item)}"]`);
+  paint(row, b, Math.max(0, b.quantity + proposal.delta_units), true);  // apply_adjustment, here
+  row.classList.add("changed");
+  row.querySelector(".why").textContent =
+    `${proposal.delta_units > 0 ? "+" : ""}${proposal.delta_units} because you asked for it`;
+  closeCard();
+  document.getElementById("tell").value = "";
+};
+
+// ---- 1 / 2 / 3 jump to a panel mid-sentence, with no scrolling
+addEventListener("keydown", e => {
+  if (e.target.matches("input, textarea, select")) {   // typing "1" must not jump panels
+    if (e.key === "Escape") { closeCard(); newcard.hidden = true; }
+    return;
+  }
+  const id = { 1: "p1", 2: "p2", 3: "p3" }[e.key];
+  if (!id && e.key !== "Escape") return;
+  if (e.key === "Escape") closeCard();
+  document.querySelectorAll(".panel").forEach(p => p.classList.remove("lit"));
+  if (id) { const el = document.getElementById(id); el.classList.add("lit"); el.focus(); }
+});
+</script>
+</body>
+</html>

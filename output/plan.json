@@ -1,0 +1,1297 @@
+{
+  "date": "2022-05-21",
+  "protected_rupees": 979,
+  "recovered_rupees": 731,
+  "bake_list": [
+    {
+      "item": "TRADITIONAL BAGUETTE",
+      "quantity": 183,
+      "tau": 0.489,
+      "low": 137,
+      "high": 234,
+      "median": 184,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +21% vs its average day",
+          "value": 0.205
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days -11% vs the last 28",
+          "value": -0.114
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Saturdays",
+          "value": 0
+        }
+      ],
+      "kind": "bread",
+      "price": 45,
+      "quantiles": [
+        123.9,
+        137.1,
+        150.8,
+        174.2,
+        184.1,
+        190.3,
+        199.5,
+        233.9,
+        241.6
+      ],
+      "reason": ""
+    },
+    {
+      "item": "BANETTE",
+      "quantity": 35,
+      "tau": 0.475,
+      "low": 30,
+      "high": 48,
+      "median": 35,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +26% vs its average day",
+          "value": 0.265
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +4% vs the last 28",
+          "value": 0.043
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 1 of the last 4 Saturdays",
+          "value": 1
+        }
+      ],
+      "kind": "bread",
+      "price": 40,
+      "quantiles": [
+        27.5,
+        29.9,
+        30.6,
+        33.0,
+        35.1,
+        40.9,
+        42.9,
+        47.8,
+        48.9
+      ],
+      "reason": ""
+    },
+    {
+      "item": "BAGUETTE",
+      "quantity": 36,
+      "tau": 0.486,
+      "low": 30,
+      "high": 46,
+      "median": 36,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +22% vs its average day",
+          "value": 0.22
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +1% vs the last 28",
+          "value": 0.012
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Saturdays",
+          "value": 0
+        }
+      ],
+      "kind": "bread",
+      "price": 35,
+      "quantiles": [
+        26.3,
+        30.4,
+        30.7,
+        34.6,
+        36.4,
+        42.9,
+        45.1,
+        45.6,
+        49.5
+      ],
+      "reason": ""
+    },
+    {
+      "item": "CEREAL BAGUETTE",
+      "quantity": 8,
+      "tau": 0.48,
+      "low": 7,
+      "high": 13,
+      "median": 8,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +33% vs its average day",
+          "value": 0.334
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days -41% vs the last 28",
+          "value": -0.408
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 1 of the last 4 Saturdays",
+          "value": 1
+        }
+      ],
+      "kind": "bread",
+      "price": 50,
+      "quantiles": [
+        5.5,
+        6.6,
+        7.4,
+        7.7,
+        8.3,
+        9.4,
+        12.4,
+        13.0,
+        13.3
+      ],
+      "reason": ""
+    },
+    {
+      "item": "SPECIAL BREAD",
+      "quantity": 15,
+      "tau": 0.478,
+      "low": 10,
+      "high": 19,
+      "median": 16,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +41% vs its average day",
+          "value": 0.409
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +21% vs the last 28",
+          "value": 0.207
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 2 of the last 4 Saturdays",
+          "value": 2
+        }
+      ],
+      "kind": "bread",
+      "price": 90,
+      "quantiles": [
+        9.3,
+        10.2,
+        12.3,
+        13.0,
+        15.7,
+        15.9,
+        18.6,
+        19.1,
+        22.2
+      ],
+      "reason": ""
+    },
+    {
+      "item": "BOULE 400G",
+      "quantity": 10,
+      "tau": 0.491,
+      "low": 7,
+      "high": 14,
+      "median": 10,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +13% vs its average day",
+          "value": 0.126
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days -2% vs the last 28",
+          "value": -0.024
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 1 of the last 4 Saturdays",
+          "value": 1
+        }
+      ],
+      "kind": "bread",
+      "price": 55,
+      "quantiles": [
+        6.1,
+        7.3,
+        7.9,
+        9.4,
+        10.3,
+        12.4,
+        12.6,
+        13.7,
+        15.6
+      ],
+      "reason": ""
+    },
+    {
+      "item": "CAMPAGNE",
+      "quantity": 7,
+      "tau": 0.483,
+      "low": 6,
+      "high": 10,
+      "median": 8,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +14% vs its average day",
+          "value": 0.139
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +11% vs the last 28",
+          "value": 0.114
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 1 of the last 4 Saturdays",
+          "value": 1
+        }
+      ],
+      "kind": "bread",
+      "price": 60,
+      "quantiles": [
+        4.3,
+        6.0,
+        7.0,
+        7.3,
+        7.5,
+        8.6,
+        10.2,
+        10.2,
+        10.7
+      ],
+      "reason": ""
+    },
+    {
+      "item": "CROISSANT",
+      "quantity": 51,
+      "tau": 0.882,
+      "low": 31,
+      "high": 50,
+      "median": 39,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +24% vs its average day",
+          "value": 0.24
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days -11% vs the last 28",
+          "value": -0.114
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 1 of the last 4 Saturdays",
+          "value": 1
+        }
+      ],
+      "kind": "pastry",
+      "price": 90,
+      "quantiles": [
+        24.3,
+        31.1,
+        31.9,
+        35.1,
+        39.4,
+        41.4,
+        43.4,
+        50.4,
+        50.9
+      ],
+      "reason": ""
+    },
+    {
+      "item": "PAIN AU CHOCOLAT",
+      "quantity": 46,
+      "tau": 0.887,
+      "low": 24,
+      "high": 45,
+      "median": 35,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +21% vs its average day",
+          "value": 0.208
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days -17% vs the last 28",
+          "value": -0.169
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 1 of the last 4 Saturdays",
+          "value": 1
+        }
+      ],
+      "kind": "pastry",
+      "price": 95,
+      "quantiles": [
+        21.8,
+        24.3,
+        26.4,
+        32.0,
+        35.1,
+        35.7,
+        44.3,
+        44.8,
+        46.7
+      ],
+      "reason": ""
+    },
+    {
+      "item": "TARTELETTE",
+      "quantity": 17,
+      "tau": 0.89,
+      "low": 7,
+      "high": 14,
+      "median": 10,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Saturday, +9% vs its average day",
+          "value": 0.092
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +17% vs the last 28",
+          "value": 0.166
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Saturdays",
+          "value": 0
+        }
+      ],
+      "kind": "pastry",
+      "price": 110,
+      "quantiles": [
+        5.2,
+        7.2,
+        7.8,
+        8.0,
+        10.0,
+        11.1,
+        13.1,
+        13.9,
+        16.9
+      ],
+      "reason": ""
+    }
+  ],
+  "markdown_schedule": [
+    {
+      "hour": 8,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 179.0,
+      "expected_remaining_demand": 180.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 162.9,
+      "expected_remaining_demand": 163.9,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 140.8,
+      "expected_remaining_demand": 141.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 107.4,
+      "expected_remaining_demand": 108.4,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 66.0,
+      "expected_remaining_demand": 67.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 13,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 33.1,
+      "expected_remaining_demand": 34.1,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 26.3,
+      "expected_remaining_demand": 27.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 26.2,
+      "expected_remaining_demand": 27.2,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 26.0,
+      "expected_remaining_demand": 27.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 18.7,
+      "expected_remaining_demand": 19.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 18,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 8.7,
+      "expected_remaining_demand": 9.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 19,
+      "item": "TRADITIONAL BAGUETTE",
+      "remaining": 0,
+      "expected_remaining_demand": 0.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 8,
+      "item": "BANETTE",
+      "remaining": 34.2,
+      "expected_remaining_demand": 34.2,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "BANETTE",
+      "remaining": 30.9,
+      "expected_remaining_demand": 30.9,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "BANETTE",
+      "remaining": 25.4,
+      "expected_remaining_demand": 25.4,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "BANETTE",
+      "remaining": 18.2,
+      "expected_remaining_demand": 18.2,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "BANETTE",
+      "remaining": 10.5,
+      "expected_remaining_demand": 10.5,
+      "discount_pct": 0
+    },
+    {
+      "hour": 13,
+      "item": "BANETTE",
+      "remaining": 4.8,
+      "expected_remaining_demand": 4.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "BANETTE",
+      "remaining": 3.8,
+      "expected_remaining_demand": 3.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "BANETTE",
+      "remaining": 3.7,
+      "expected_remaining_demand": 3.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "BANETTE",
+      "remaining": 3.7,
+      "expected_remaining_demand": 3.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "BANETTE",
+      "remaining": 2.8,
+      "expected_remaining_demand": 2.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 18,
+      "item": "BANETTE",
+      "remaining": 1.6,
+      "expected_remaining_demand": 1.6,
+      "discount_pct": 0
+    },
+    {
+      "hour": 19,
+      "item": "BANETTE",
+      "remaining": 0.2,
+      "expected_remaining_demand": 0.2,
+      "discount_pct": 0
+    },
+    {
+      "hour": 8,
+      "item": "BAGUETTE",
+      "remaining": 35.0,
+      "expected_remaining_demand": 35.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "BAGUETTE",
+      "remaining": 30.1,
+      "expected_remaining_demand": 30.1,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "BAGUETTE",
+      "remaining": 23.3,
+      "expected_remaining_demand": 23.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "BAGUETTE",
+      "remaining": 15.8,
+      "expected_remaining_demand": 15.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "BAGUETTE",
+      "remaining": 9.0,
+      "expected_remaining_demand": 9.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 13,
+      "item": "BAGUETTE",
+      "remaining": 3.6,
+      "expected_remaining_demand": 3.6,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "BAGUETTE",
+      "remaining": 2.7,
+      "expected_remaining_demand": 2.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "BAGUETTE",
+      "remaining": 2.7,
+      "expected_remaining_demand": 2.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "BAGUETTE",
+      "remaining": 2.7,
+      "expected_remaining_demand": 2.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "BAGUETTE",
+      "remaining": 1.9,
+      "expected_remaining_demand": 1.9,
+      "discount_pct": 0
+    },
+    {
+      "hour": 18,
+      "item": "BAGUETTE",
+      "remaining": 1.0,
+      "expected_remaining_demand": 1.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 19,
+      "item": "BAGUETTE",
+      "remaining": 0.0,
+      "expected_remaining_demand": 0.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 8,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 7.8,
+      "expected_remaining_demand": 7.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 7.0,
+      "expected_remaining_demand": 7.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 6.0,
+      "expected_remaining_demand": 6.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 5.1,
+      "expected_remaining_demand": 5.1,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 3.5,
+      "expected_remaining_demand": 3.5,
+      "discount_pct": 0
+    },
+    {
+      "hour": 13,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 1.8,
+      "expected_remaining_demand": 1.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 1.3,
+      "expected_remaining_demand": 1.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 1.3,
+      "expected_remaining_demand": 1.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 1.3,
+      "expected_remaining_demand": 1.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 1.0,
+      "expected_remaining_demand": 1.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 18,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 0.5,
+      "expected_remaining_demand": 0.5,
+      "discount_pct": 0
+    },
+    {
+      "hour": 19,
+      "item": "CEREAL BAGUETTE",
+      "remaining": 0.0,
+      "expected_remaining_demand": 0.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 8,
+      "item": "SPECIAL BREAD",
+      "remaining": 14.7,
+      "expected_remaining_demand": 15.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "SPECIAL BREAD",
+      "remaining": 13.8,
+      "expected_remaining_demand": 14.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "SPECIAL BREAD",
+      "remaining": 12.0,
+      "expected_remaining_demand": 13.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "SPECIAL BREAD",
+      "remaining": 8.7,
+      "expected_remaining_demand": 9.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "SPECIAL BREAD",
+      "remaining": 4.0,
+      "expected_remaining_demand": 5.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 13,
+      "item": "SPECIAL BREAD",
+      "remaining": 1.0,
+      "expected_remaining_demand": 2.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "SPECIAL BREAD",
+      "remaining": 0.7,
+      "expected_remaining_demand": 1.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "SPECIAL BREAD",
+      "remaining": 0.7,
+      "expected_remaining_demand": 1.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "SPECIAL BREAD",
+      "remaining": 0.7,
+      "expected_remaining_demand": 1.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "SPECIAL BREAD",
+      "remaining": 0.3,
+      "expected_remaining_demand": 1.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 18,
+      "item": "SPECIAL BREAD",
+      "remaining": 0,
+      "expected_remaining_demand": 0.6,
+      "discount_pct": 0
+    },
+    {
+      "hour": 19,
+      "item": "SPECIAL BREAD",
+      "remaining": 0,
+      "expected_remaining_demand": 0.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 8,
+      "item": "BOULE 400G",
+      "remaining": 9.9,
+      "expected_remaining_demand": 9.9,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "BOULE 400G",
+      "remaining": 9.3,
+      "expected_remaining_demand": 9.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "BOULE 400G",
+      "remaining": 8.3,
+      "expected_remaining_demand": 8.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "BOULE 400G",
+      "remaining": 6.3,
+      "expected_remaining_demand": 6.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "BOULE 400G",
+      "remaining": 3.7,
+      "expected_remaining_demand": 3.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 13,
+      "item": "BOULE 400G",
+      "remaining": 2.0,
+      "expected_remaining_demand": 2.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "BOULE 400G",
+      "remaining": 1.7,
+      "expected_remaining_demand": 1.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "BOULE 400G",
+      "remaining": 1.7,
+      "expected_remaining_demand": 1.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "BOULE 400G",
+      "remaining": 1.7,
+      "expected_remaining_demand": 1.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "BOULE 400G",
+      "remaining": 1.3,
+      "expected_remaining_demand": 1.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 18,
+      "item": "BOULE 400G",
+      "remaining": 0.6,
+      "expected_remaining_demand": 0.6,
+      "discount_pct": 0
+    },
+    {
+      "hour": 19,
+      "item": "BOULE 400G",
+      "remaining": 0.1,
+      "expected_remaining_demand": 0.1,
+      "discount_pct": 0
+    },
+    {
+      "hour": 8,
+      "item": "CAMPAGNE",
+      "remaining": 6.9,
+      "expected_remaining_demand": 7.9,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "CAMPAGNE",
+      "remaining": 6.3,
+      "expected_remaining_demand": 7.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "CAMPAGNE",
+      "remaining": 5.2,
+      "expected_remaining_demand": 6.2,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "CAMPAGNE",
+      "remaining": 3.7,
+      "expected_remaining_demand": 4.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "CAMPAGNE",
+      "remaining": 2.1,
+      "expected_remaining_demand": 3.1,
+      "discount_pct": 0
+    },
+    {
+      "hour": 13,
+      "item": "CAMPAGNE",
+      "remaining": 0.8,
+      "expected_remaining_demand": 1.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "CAMPAGNE",
+      "remaining": 0.5,
+      "expected_remaining_demand": 1.5,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "CAMPAGNE",
+      "remaining": 0.5,
+      "expected_remaining_demand": 1.5,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "CAMPAGNE",
+      "remaining": 0.5,
+      "expected_remaining_demand": 1.5,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "CAMPAGNE",
+      "remaining": 0.2,
+      "expected_remaining_demand": 1.2,
+      "discount_pct": 0
+    },
+    {
+      "hour": 18,
+      "item": "CAMPAGNE",
+      "remaining": 0,
+      "expected_remaining_demand": 0.4,
+      "discount_pct": 0
+    },
+    {
+      "hour": 19,
+      "item": "CAMPAGNE",
+      "remaining": 0,
+      "expected_remaining_demand": 0.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 8,
+      "item": "CROISSANT",
+      "remaining": 47.4,
+      "expected_remaining_demand": 35.4,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "CROISSANT",
+      "remaining": 35.7,
+      "expected_remaining_demand": 23.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "CROISSANT",
+      "remaining": 25.0,
+      "expected_remaining_demand": 13.0,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "CROISSANT",
+      "remaining": 19.9,
+      "expected_remaining_demand": 7.9,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "CROISSANT",
+      "remaining": 16.3,
+      "expected_remaining_demand": 4.3,
+      "discount_pct": 20
+    },
+    {
+      "hour": 13,
+      "item": "CROISSANT",
+      "remaining": 14.3,
+      "expected_remaining_demand": 2.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "CROISSANT",
+      "remaining": 14.2,
+      "expected_remaining_demand": 2.2,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "CROISSANT",
+      "remaining": 14.2,
+      "expected_remaining_demand": 2.2,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "CROISSANT",
+      "remaining": 14.2,
+      "expected_remaining_demand": 2.2,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "CROISSANT",
+      "remaining": 13.4,
+      "expected_remaining_demand": 1.4,
+      "discount_pct": 30
+    },
+    {
+      "hour": 18,
+      "item": "CROISSANT",
+      "remaining": 12.6,
+      "expected_remaining_demand": 0.6,
+      "discount_pct": 50
+    },
+    {
+      "hour": 19,
+      "item": "CROISSANT",
+      "remaining": 12.1,
+      "expected_remaining_demand": 0.1,
+      "discount_pct": 0
+    },
+    {
+      "hour": 8,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 42.9,
+      "expected_remaining_demand": 31.9,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 34.5,
+      "expected_remaining_demand": 23.5,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 23.8,
+      "expected_remaining_demand": 12.8,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 18.3,
+      "expected_remaining_demand": 7.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 15.1,
+      "expected_remaining_demand": 4.1,
+      "discount_pct": 20
+    },
+    {
+      "hour": 13,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 13.6,
+      "expected_remaining_demand": 2.6,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 13.5,
+      "expected_remaining_demand": 2.5,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 13.4,
+      "expected_remaining_demand": 2.4,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 13.4,
+      "expected_remaining_demand": 2.4,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 12.5,
+      "expected_remaining_demand": 1.5,
+      "discount_pct": 30
+    },
+    {
+      "hour": 18,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 11.5,
+      "expected_remaining_demand": 0.5,
+      "discount_pct": 50
+    },
+    {
+      "hour": 19,
+      "item": "PAIN AU CHOCOLAT",
+      "remaining": 11.1,
+      "expected_remaining_demand": 0.1,
+      "discount_pct": 0
+    },
+    {
+      "hour": 8,
+      "item": "TARTELETTE",
+      "remaining": 16.9,
+      "expected_remaining_demand": 9.9,
+      "discount_pct": 0
+    },
+    {
+      "hour": 9,
+      "item": "TARTELETTE",
+      "remaining": 16.5,
+      "expected_remaining_demand": 9.5,
+      "discount_pct": 0
+    },
+    {
+      "hour": 10,
+      "item": "TARTELETTE",
+      "remaining": 15.7,
+      "expected_remaining_demand": 8.7,
+      "discount_pct": 0
+    },
+    {
+      "hour": 11,
+      "item": "TARTELETTE",
+      "remaining": 14.3,
+      "expected_remaining_demand": 7.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 12,
+      "item": "TARTELETTE",
+      "remaining": 12.1,
+      "expected_remaining_demand": 5.1,
+      "discount_pct": 20
+    },
+    {
+      "hour": 13,
+      "item": "TARTELETTE",
+      "remaining": 9.9,
+      "expected_remaining_demand": 2.9,
+      "discount_pct": 0
+    },
+    {
+      "hour": 14,
+      "item": "TARTELETTE",
+      "remaining": 9.3,
+      "expected_remaining_demand": 2.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 15,
+      "item": "TARTELETTE",
+      "remaining": 9.3,
+      "expected_remaining_demand": 2.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 16,
+      "item": "TARTELETTE",
+      "remaining": 9.3,
+      "expected_remaining_demand": 2.3,
+      "discount_pct": 0
+    },
+    {
+      "hour": 17,
+      "item": "TARTELETTE",
+      "remaining": 8.5,
+      "expected_remaining_demand": 1.5,
+      "discount_pct": 30
+    },
+    {
+      "hour": 18,
+      "item": "TARTELETTE",
+      "remaining": 7.9,
+      "expected_remaining_demand": 0.9,
+      "discount_pct": 50
+    },
+    {
+      "hour": 19,
+      "item": "TARTELETTE",
+      "remaining": 7.1,
+      "expected_remaining_demand": 0.1,
+      "discount_pct": 0
+    }
+  ],
+  "backtest": {
+    "headline": {
+      "start": "2022-04-27",
+      "end": "2022-05-27",
+      "trading_days": 30,
+      "note": "a normal month",
+      "profit": {
+        "yesterday": 217128.0,
+        "weekday_avg": 250315.0,
+        "proof": 279694.0
+      },
+      "waste_pct": {
+        "yesterday": 18.8,
+        "weekday_avg": 14.5,
+        "proof": 16.4
+      },
+      "stockout_item_days": {
+        "yesterday": 163,
+        "weekday_avg": 132,
+        "proof": 102
+      },
+      "delta": 29379.0,
+      "per_month": 29379.0,
+      "sensitivity": {
+        "28%": 40215.0,
+        "33%": 32203.0,
+        "40%": 23921.0
+      }
+    },
+    "stress": {
+      "start": "2022-08-30",
+      "end": "2022-09-30",
+      "trading_days": 30,
+      "note": "when the season turns",
+      "profit": {
+        "yesterday": 216123.0,
+        "weekday_avg": 183614.0,
+        "proof": 274292.0
+      },
+      "waste_pct": {
+        "yesterday": 17.6,
+        "weekday_avg": 41.2,
+        "proof": 19.5
+      },
+      "stockout_item_days": {
+        "yesterday": 155,
+        "weekday_avg": 51,
+        "proof": 79
+      },
+      "delta": 90678.0,
+      "per_month": 90678.0,
+      "sensitivity": {
+        "28%": 39579.0,
+        "33%": 50165.0,
+        "40%": 70498.0
+      }
+    }
+  }
+}

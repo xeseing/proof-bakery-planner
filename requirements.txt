@@ -1,0 +1,8 @@
+pandas
+numpy
+lightgbm
+scikit-learn
+pyarrow
+pydantic
+# optional: only to parse a new override phrase with a real model
+# anthropic

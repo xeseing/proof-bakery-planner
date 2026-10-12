@@ -1,0 +1,213 @@
+{
+  "window": {
+    "start": "2022-08-30",
+    "end": "2022-09-30",
+    "trading_days": 30,
+    "item_days": 297
+  },
+  "policies": {
+    "yesterday": {
+      "profit": 216123.0,
+      "waste_units": 1700.0,
+      "waste_%": 17.6,
+      "stockout_item_days": 155
+    },
+    "weekday_avg": {
+      "profit": 183614.0,
+      "waste_units": 6966.0,
+      "waste_%": 41.2,
+      "stockout_item_days": 51
+    },
+    "proof": {
+      "profit": 274292.0,
+      "waste_units": 2288.0,
+      "waste_%": 19.5,
+      "stockout_item_days": 79
+    }
+  },
+  "proof_vs_weekday_avg": {
+    "rupees": 90678.0,
+    "per_day": 3022.6,
+    "per_month": 90678.0
+  },
+  "by_kind": [
+    {
+      "kind": "bread",
+      "policy": "yesterday",
+      "profit": 112100.0,
+      "waste_units": 1089.0,
+      "waste_%": 14.9,
+      "stockout_item_days": 108
+    },
+    {
+      "kind": "bread",
+      "policy": "weekday_avg",
+      "profit": 44367.0,
+      "waste_units": 5234.0,
+      "waste_%": 41.2,
+      "stockout_item_days": 38
+    },
+    {
+      "kind": "bread",
+      "policy": "proof",
+      "profit": 135359.0,
+      "waste_units": 812.0,
+      "waste_%": 10.4,
+      "stockout_item_days": 75
+    },
+    {
+      "kind": "pastry",
+      "policy": "yesterday",
+      "profit": 104023.0,
+      "waste_units": 611.0,
+      "waste_%": 25.9,
+      "stockout_item_days": 47
+    },
+    {
+      "kind": "pastry",
+      "policy": "weekday_avg",
+      "profit": 139247.0,
+      "waste_units": 1732.0,
+      "waste_%": 41.3,
+      "stockout_item_days": 13
+    },
+    {
+      "kind": "pastry",
+      "policy": "proof",
+      "profit": 138933.0,
+      "waste_units": 1476.0,
+      "waste_%": 37.9,
+      "stockout_item_days": 4
+    }
+  ],
+  "decomposition": [
+    {
+      "kind": "bread",
+      "weekday_avg": 44367.0,
+      "median_model": 134930.0,
+      "proof": 135359.0,
+      "forecast_adds": 90563.0,
+      "tilt_adds": 429.0
+    },
+    {
+      "kind": "pastry",
+      "weekday_avg": 139247.0,
+      "median_model": 132863.0,
+      "proof": 138933.0,
+      "forecast_adds": -6384.0,
+      "tilt_adds": 6070.0
+    },
+    {
+      "kind": "TOTAL",
+      "weekday_avg": 183614.0,
+      "median_model": 267793.0,
+      "proof": 274292.0,
+      "forecast_adds": 84179.0,
+      "tilt_adds": 6499.0
+    }
+  ],
+  "largest_item": {
+    "item": "TRADITIONAL BAGUETTE",
+    "rupees": 75473.0,
+    "share_of_delta": 0.8323187542733629
+  },
+  "by_item": [
+    {
+      "item": "BAGUETTE",
+      "yesterday": 8841.0,
+      "weekday_avg": 7301.0,
+      "proof": 11004.0,
+      "proof - weekday_avg": 3703.0
+    },
+    {
+      "item": "BANETTE",
+      "yesterday": 13146.0,
+      "weekday_avg": 7282.0,
+      "proof": 12888.0,
+      "proof - weekday_avg": 5606.0
+    },
+    {
+      "item": "BOULE 400G",
+      "yesterday": 2079.0,
+      "weekday_avg": 1505.0,
+      "proof": 3032.0,
+      "proof - weekday_avg": 1527.0
+    },
+    {
+      "item": "CAMPAGNE",
+      "yesterday": 3190.0,
+      "weekday_avg": 1590.0,
+      "proof": 3805.0,
+      "proof - weekday_avg": 2215.0
+    },
+    {
+      "item": "CEREAL BAGUETTE",
+      "yesterday": 3112.0,
+      "weekday_avg": 1540.0,
+      "proof": 3252.0,
+      "proof - weekday_avg": 1712.0
+    },
+    {
+      "item": "CROISSANT",
+      "yesterday": 48580.0,
+      "weekday_avg": 66365.0,
+      "proof": 65253.0,
+      "proof - weekday_avg": -1112.0
+    },
+    {
+      "item": "PAIN AU CHOCOLAT",
+      "yesterday": 47623.0,
+      "weekday_avg": 62040.0,
+      "proof": 62043.0,
+      "proof - weekday_avg": 3.0
+    },
+    {
+      "item": "SPECIAL BREAD",
+      "yesterday": 7123.0,
+      "weekday_avg": 7527.0,
+      "proof": 8283.0,
+      "proof - weekday_avg": 756.0
+    },
+    {
+      "item": "TARTELETTE",
+      "yesterday": 7820.0,
+      "weekday_avg": 10842.0,
+      "proof": 11637.0,
+      "proof - weekday_avg": 795.0
+    },
+    {
+      "item": "TRADITIONAL BAGUETTE",
+      "yesterday": 74609.0,
+      "weekday_avg": 17622.0,
+      "proof": 93095.0,
+      "proof - weekday_avg": 75473.0
+    }
+  ],
+  "sensitivity": {
+    "28%": {
+      "profit": {
+        "yesterday": 306285.0,
+        "weekday_avg": 339688.0,
+        "proof": 379267.0
+      },
+      "delta": 39579.0
+    },
+    "33%": {
+      "profit": {
+        "yesterday": 278554.0,
+        "weekday_avg": 291323.0,
+        "proof": 341488.0
+      },
+      "delta": 50165.0
+    },
+    "40%": {
+      "profit": {
+        "yesterday": 239731.0,
+        "weekday_avg": 223613.0,
+        "proof": 294111.0
+      },
+      "delta": 70498.0
+    }
+  },
+  "proof_wins_at_every_cost_level": 1.0
+}

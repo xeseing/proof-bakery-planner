@@ -1,0 +1,59 @@
+/* Design tokens for both surfaces.
+   Subject matter: a bakery at 5am, before dawn, lit by the oven. */
+
+:root {
+  --ink:        #0B1017;   /* pre-dawn sky — page base             */
+  --ink-raised: #141B25;   /* panel surfaces                       */
+  --ember:      #FF8A3D;   /* oven glow — the ONE accent           */
+  --ember-dim:  #B4561F;   /* ember at rest                        */
+  --flour:      #F2EDE4;   /* primary text, warm off-white         */
+  --flour-mute: #8E9099;   /* secondary text                       */
+  --loss:       #E5484D;   /* stockouts / waste                    */
+  --gain:       #3DD68C;   /* recovered rupees                     */
+  --line:       #202938;   /* hairlines, derived from --ink-raised */
+
+  /* Two families, clearly distinct: a grotesque for quantities, a humanist for
+     reading. No webfont — a blocking font request can stall first paint on
+     venue wifi, and the demo has to render offline. */
+  --display: "Space Grotesk", "Archivo", Bahnschrift, "Segoe UI Variable Display",
+             system-ui, sans-serif;
+  --body: Inter, "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--flour);
+  font: 15px/1.45 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 600; }
+
+.num {
+  font-family: var(--display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.muted { color: var(--flour-mute); }
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 11px;
+  cursor: pointer;
+}
+
+button:hover { border-color: var(--ember-dim); }
+
+:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

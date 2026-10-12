@@ -1,0 +1,225 @@
+{
+  "date": "2022-05-27",
+  "bake_list": [
+    {
+      "item": "TRADITIONAL BAGUETTE",
+      "quantity": 176,
+      "tau": 0.489,
+      "low": 165,
+      "high": 206,
+      "median": 177,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, -29% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +13% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Fridays"
+        }
+      ]
+    },
+    {
+      "item": "BANETTE",
+      "quantity": 33,
+      "tau": 0.475,
+      "low": 23,
+      "high": 47,
+      "median": 34,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, -24% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +24% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Fridays"
+        }
+      ]
+    },
+    {
+      "item": "BAGUETTE",
+      "quantity": 31,
+      "tau": 0.486,
+      "low": 24,
+      "high": 40,
+      "median": 31,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, -10% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +14% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Fridays"
+        }
+      ]
+    },
+    {
+      "item": "CEREAL BAGUETTE",
+      "quantity": 13,
+      "tau": 0.48,
+      "low": 9,
+      "high": 23,
+      "median": 13,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, -31% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +32% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Fridays"
+        }
+      ]
+    },
+    {
+      "item": "SPECIAL BREAD",
+      "quantity": 8,
+      "tau": 0.478,
+      "low": 6,
+      "high": 11,
+      "median": 8,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, -24% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days -17% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 1 of the last 4 Fridays"
+        }
+      ]
+    },
+    {
+      "item": "BOULE 400G",
+      "quantity": 7,
+      "tau": 0.491,
+      "low": 5,
+      "high": 12,
+      "median": 7,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, +44% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +9% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 2 of the last 4 Fridays"
+        }
+      ]
+    },
+    {
+      "item": "CAMPAGNE",
+      "quantity": 6,
+      "tau": 0.483,
+      "low": 4,
+      "high": 9,
+      "median": 6,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, -13% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days -11% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Fridays"
+        }
+      ]
+    },
+    {
+      "item": "CROISSANT",
+      "quantity": 72,
+      "tau": 0.882,
+      "low": 24,
+      "high": 56,
+      "median": 36,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, -51% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +36% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Fridays"
+        }
+      ]
+    },
+    {
+      "item": "PAIN AU CHOCOLAT",
+      "quantity": 62,
+      "tau": 0.887,
+      "low": 19,
+      "high": 49,
+      "median": 32,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, -20% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days +13% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 1 of the last 4 Fridays"
+        }
+      ]
+    },
+    {
+      "item": "TARTELETTE",
+      "quantity": 12,
+      "tau": 0.89,
+      "low": 4,
+      "high": 10,
+      "median": 8,
+      "drivers": [
+        {
+          "factor": "weekday",
+          "detail": "Friday, +1% vs its average day"
+        },
+        {
+          "factor": "trend",
+          "detail": "last 7 days -18% vs the last 28"
+        },
+        {
+          "factor": "stockouts",
+          "detail": "sold out 0 of the last 4 Fridays"
+        }
+      ]
+    }
+  ]
+}

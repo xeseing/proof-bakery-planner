@@ -1,0 +1,10 @@
+{
+  "text": "kal 20 croissant ka order hai",
+  "source": "seeded",
+  "proposal": {
+    "item": "CROISSANT",
+    "delta_units": 20,
+    "confidence": 0.95,
+    "reason": "Catering order for 20 croissants tomorrow"
+  }
+}

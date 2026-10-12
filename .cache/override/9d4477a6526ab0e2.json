@@ -1,0 +1,10 @@
+{
+  "text": "shaadi hai Saturday, thoda zyada bana lena",
+  "source": "seeded",
+  "proposal": {
+    "item": "",
+    "delta_units": 0,
+    "confidence": 0.4,
+    "reason": "Wedding Saturday, quantity not specified"
+  }
+}

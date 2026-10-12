@@ -1,0 +1,10 @@
+{
+  "text": "kal 80 puff ka order hai",
+  "source": "seeded",
+  "proposal": {
+    "item": "CROISSANT",
+    "delta_units": 80,
+    "confidence": 0.55,
+    "reason": "Catering order for 80 puffs tomorrow; nearest item on this menu is croissant"
+  }
+}
